@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
+    // UtilityJsonを使う方法が良さそう
     private string playersName = "player";
     private float bgmVolume = 0.2f;
     private float seVolume = 0.2f;
