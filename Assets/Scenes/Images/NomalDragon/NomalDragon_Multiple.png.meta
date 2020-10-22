@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: 24c5bb705088c0b46bdbbc7c1886a8df
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 712362539301120366
+    second: NomalDragon_Multiple_0
+  - first:
+      213: -7063975888924571107
+    second: NomalDragon_Multiple_1
+  - first:
+      213: 6701689447030830440
+    second: NomalDragon_Multiple_2
+  - first:
+      213: -51242077221108344
+    second: NomalDragon_Multiple_3
+  - first:
+      213: 3806857729407624633
+    second: NomalDragon_Multiple_4
+  - first:
+      213: 3667352659009659788
+    second: NomalDragon_Multiple_5
+  - first:
+      213: 1934294668278115692
+    second: NomalDragon_Multiple_6
+  - first:
+      213: -5843726113907490907
+    second: NomalDragon_Multiple_0
+  - first:
+      213: 6488583083457560888
+    second: NomalDragon_Multiple_1
+  - first:
+      213: -4052395171907724551
+    second: NomalDragon_Multiple_2
+  - first:
+      213: 4700319444476083012
+    second: NomalDragon_Multiple_3
+  - first:
+      213: -5521096656183945332
+    second: NomalDragon_Multiple_4
+  - first:
+      213: -5699206899056930530
+    second: NomalDragon_Multiple_5
+  - first:
+      213: -4557108766441530893
+    second: NomalDragon_Multiple_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 485
+        width: 40
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69a65a84f1d2e900800000000000000
+      internalID: 712362539301120366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 499
+        width: 87
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1a0ab60b57b7fd90800000000000000
+      internalID: -7063975888924571107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_2
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 428
+        width: 268
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865b1458b0f210d50800000000000000
+      internalID: 6701689447030830440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_3
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 256
+        width: 201
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 885cead2a93f94ff0800000000000000
+      internalID: -51242077221108344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_4
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 125
+        width: 126
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b5aacf6feca4d430800000000000000
+      internalID: 3806857729407624633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_5
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 52
+        width: 100
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83ea5a10dd05e230800000000000000
+      internalID: 3667352659009659788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NomalDragon_Multiple_6
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 96
+        width: 79
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d26a1a0cef7da10800000000000000
+      internalID: 1934294668278115692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 637325381925141285
+  assetBundleName: 
+  assetBundleVariant: 
