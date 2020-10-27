@@ -37,11 +37,22 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if((this.tag == "PlayerBullet" && collision.gameObject.tag == "Enemy")||(this.tag == "EnemyBullet" && collision.gameObject.tag == "Player"))
+        if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().OnDamage(power);
-            Instantiate(hiteffect, this.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            if(tag == "EnemyBullet" || tag == "NPCBullet")
+            {
+                collision.gameObject.GetComponent<PlayerController>().OnDamage(power);
+                Instantiate(hiteffect, this.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if(this.tag == "PlayerBullet")
+            {
+                Instantiate(hiteffect, this.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
         }
     }
 

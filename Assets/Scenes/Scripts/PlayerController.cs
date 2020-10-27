@@ -54,9 +54,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         {
             tag = "Enemy";
         }
-        //弾のクールタイム設定
-        bullet1CoolTime = bullet1Prefab.GetCoolTime();
-        bullet2CoolTime = bullet2Prefab.GetCoolTime();
+        else
+        {
+            //弾のクールタイム設定
+            bullet1CoolTime = bullet1Prefab.GetCoolTime();
+            bullet2CoolTime = bullet2Prefab.GetCoolTime();
+        }
         //画面端座標取得
         screenLeftBottom = Camera.main.ScreenToWorldPoint(Vector2.zero);
         screenRightTop = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
@@ -208,15 +211,20 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     //被弾処理
     public void OnDamage(int damage)
     {
-        hp = Math.Max(hp - damage, 0);  //hp減少
+        photonView.RPC(nameof(HPChange), RpcTarget.All, Math.Max(hp - damage, 0));
         photonView.RPC(nameof(InstantiateDamageText), RpcTarget.All, damage);   //ダメージテキストの生成
         //HPスライダーの更新
         if (photonView.IsMine)
         {
             hpSlider.value = hp;
         }
+    }
+    [PunRPC]
+    private void HPChange(int currentHP)
+    {
+        hp = currentHP;
         //hp0なら敗北処理
-        if(hp == 0)
+        if (hp == 0)
         {
             Death();
         }

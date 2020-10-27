@@ -44,6 +44,8 @@ public class BattleManager : MonoBehaviourPunCallbacks
     private BGMManager bgmManager;
     [SerializeField]
     private List<BulletController> allAbilities;
+    [SerializeField]
+    private NPC npc = null;
     void Start()
     {
         loadingPanel.SetActive(true);                   //ローディングパネルを表示
@@ -198,6 +200,10 @@ public class BattleManager : MonoBehaviourPunCallbacks
         myCharacter.GetComponent<PlayerController>().SwitchWait(false);
         yield return new WaitForSeconds(1);
         battleInformationPanel.SetActive(false);
+        if(startPosition == START_POSITION.LEFT)
+        {
+            npc.SetUp();
+        }
     }
     //カウントダウン表示用テキスト(TMP)のテキスト変更
     private void SetCountDownTMP(string text)
