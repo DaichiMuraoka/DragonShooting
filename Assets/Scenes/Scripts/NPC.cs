@@ -7,6 +7,11 @@ public class NPC : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private BulletController bullet = null;
+    [SerializeField]
+    private Item item = null;
+    [SerializeField]
+    private Item bonusItem = null;
+    private bool fire = true;
     private void Start()
     {
         
@@ -23,25 +28,43 @@ public class NPC : MonoBehaviourPunCallbacks
         }
         StartCoroutine(Update1());
     }
+    public void StopFire()
+    {
+        fire = false;
+    }
     IEnumerator Update1()
     {
         int count = 0;
-        while (true)
+        while (fire)
         {
-            for(int rad = 0; rad < 360; rad += 6)
-            {
-                Debug.Log("Npc Fire");
-                photonView.RPC(nameof(NPCFire), RpcTarget.All, (float)rad);
-            }
-            yield return new WaitForSeconds(3.0f);
+            photonView.RPC(nameof(NPCFire), RpcTarget.All, count);
             count++;
+            yield return new WaitForSeconds(2.0f);
         }
     }
     [PunRPC]
-    private void NPCFire(float angle, PhotonMessageInfo info)
+    private void NPCFire(int count, PhotonMessageInfo info)
     {
-        BulletController ability = Instantiate(bullet);
-        int timestamp = info.SentServerTimestamp;               //射出時間の取得
-        ability.Init(transform.position, angle, timestamp);  //弾のセッティング
+        for (int rad = 0 + count; rad < 360 + (count * 12); rad += 12)
+        {
+            int timestamp = info.SentServerTimestamp;               //射出時間の取得
+            float rdm = Random.Range(0f, 1.0f);
+            if (rdm <= 0.05f)
+            {
+                Item i = Instantiate(bonusItem);
+                i.Init(transform.position, rad, timestamp);
+            }
+            else if(rdm <= 0.25)
+            {
+                Item i = Instantiate(item);
+                i.Init(transform.position, rad, timestamp);
+            }
+            else
+            {
+                Debug.Log("Npc Fire");
+                BulletController ability = Instantiate(bullet);
+                ability.Init(transform.position, rad, timestamp);  //弾のセッティング
+            }
+        }
     }
 }

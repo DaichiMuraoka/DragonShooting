@@ -10,7 +10,7 @@ public class PlayerData
     private string playersName = "player";
     private float bgmVolume = 0.2f;
     private float seVolume = 0.2f;
-    private string characterData = "NomalDragon:FireBall:FlameThrower:EnagyBall/MegaDraco:FireBall:FlameThrower:EnagyBall";
+    private string characterData = "NomalDragon:FireBall:FlameThrower:EnagyBall/MegaDraco:FireBall:EnagyBall:FlameThrower";
     private string battleCharacter = "NomalDragon";
     private string itemData = "EnagyClowd:1";
     private int winCount = 0;

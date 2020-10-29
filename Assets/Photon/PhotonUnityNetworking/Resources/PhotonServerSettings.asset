@@ -49,6 +49,9 @@ MonoBehaviour:
   - SwitchNameIcon
   - NPCFire
   - HPChange
+  - ChangePoint
+  - ChangeScoreText
+  - ChangeScore
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

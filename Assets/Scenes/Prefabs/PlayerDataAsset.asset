@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerDataAsset
   m_EditorClassIdentifier: 
   playersName: player
-  bgmVolume: 0.2
+  bgmVolume: 0.1
   seVolume: 0.2
   characterData: NomalDragon:FireBall:FlameThrower:EnagyBall/MegaDraco:FireBall:EnagyBall:FlameThrower
-  battleCharacter: NomalDragon
+  battleCharacter: MegaDraco
   itemData: EnagyClowd:1
   winCount: 0

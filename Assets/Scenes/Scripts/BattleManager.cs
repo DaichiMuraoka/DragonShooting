@@ -46,12 +46,24 @@ public class BattleManager : MonoBehaviourPunCallbacks
     private List<BulletController> allAbilities;
     [SerializeField]
     private NPC npc = null;
+    [SerializeField]
+    private Text leftScoreValueText = null;
+    private int leftScoreValue = 0;
+    [SerializeField]
+    private Text rightScoreValueText = null;
+    private int rightScoreValue = 0;
+    [SerializeField]
+    private Text timeOverText = null;
+    [SerializeField]
+    private int timeOver = 10;
+
     void Start()
     {
         loadingPanel.SetActive(true);                   //ローディングパネルを表示
         battleInformationPanel.SetActive(false);        //バトル情報パネルを非表示
         myStartTime = PhotonNetwork.ServerTimestamp;    //スタート時刻を保存
         Debug.Log(myStartTime);
+        timeOverText.text = timeOver.ToString();
     }
     void Update()
     {
@@ -116,6 +128,10 @@ public class BattleManager : MonoBehaviourPunCallbacks
         PlayerDataAsset playerDataAsset = saveDataManager.GetPlayerDataAsset();
         myCharacter.GetComponent<PlayerController>().SetPlayerName(playerDataAsset.GetPlayersName());
         myCharacter.GetComponent<PlayerController>().SetHPSlider(hpSlider);     //HPスライダーの取付
+        if(startPosition == START_POSITION.RIGHT)
+        {
+            myCharacter.GetComponent<PlayerController>().SwichPlayersDirection();
+        }
         //アビリティ取り付け
         string characterData = playerDataAsset.GetCharacterData();
         List<string> characterDataList = new List<string>();
@@ -147,11 +163,6 @@ public class BattleManager : MonoBehaviourPunCallbacks
         }
         //効果音変更
         myCharacter.GetComponent<PlayerController>().SetSEVolume(playerDataAsset.GetSEVolume());
-        //右側スタートなら向きを変更
-        if (startPosition == START_POSITION.RIGHT)
-        {
-            myCharacter.GetComponent<PlayerController>().SwichPlayersDirection();
-        }
     }
     //相手のシーン開始サーバー時刻の受け取り
     [PunRPC]
@@ -172,7 +183,8 @@ public class BattleManager : MonoBehaviourPunCallbacks
         {
             status = STATUS.SEND_CONFIRM_ST;
             battleStartTime = Mathf.Max(myStartTime, enemyStartTime) + 3000;
-            if (battleStartTime == myStartTime + 3000)
+            //マスターなら
+            if (PhotonNetwork.IsMasterClient)
             {
                 startPosition = START_POSITION.LEFT;
             }
@@ -197,6 +209,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
         }
         Debug.Log("BattleStart!");
         SetCountDownTMP("GO!");
+        StartCoroutine(CountDownTime());
         myCharacter.GetComponent<PlayerController>().SwitchWait(false);
         yield return new WaitForSeconds(1);
         battleInformationPanel.SetActive(false);
@@ -213,6 +226,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
     //ゲームオーバー処理
     IEnumerator GameOver()
     {
+        npc.StopFire();
         yield return new WaitForSeconds(2);
         battleInformationPanel.SetActive(true);
         SetCountDownTMP("GAME SET");
@@ -233,6 +247,44 @@ public class BattleManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(2);
         PhotonNetwork.LeaveRoom();  //ルーム退出
         SceneManager.LoadScene("RoomLobby", LoadSceneMode.Single);  //ロビーシーンへ移動
+    }
+    IEnumerator CountDownTime()
+    {
+        yield return new WaitForSeconds(1);
+        timeOver--;
+        timeOverText.text = timeOver.ToString();
+        if(status != STATUS.GAME_OVER)
+        {
+            if (timeOver <= 0)
+            {
+                if (startPosition == START_POSITION.LEFT)
+                {
+                    if (leftScoreValue > rightScoreValue)
+                    {
+                        GameOverProcess(true);
+                    }
+                    else
+                    {
+                        GameOverProcess(false);
+                    }
+                }
+                if (startPosition == START_POSITION.RIGHT)
+                {
+                    if (leftScoreValue < rightScoreValue)
+                    {
+                        GameOverProcess(true);
+                    }
+                    else
+                    {
+                        GameOverProcess(false);
+                    }
+                }
+            }
+            else
+            {
+                StartCoroutine(CountDownTime());
+            }
+        }
     }
     //他プレイヤー退出時コールバック
     public override void OnPlayerLeftRoom(Player player)
@@ -271,5 +323,22 @@ public class BattleManager : MonoBehaviourPunCallbacks
             }
         }
         return null;
+    }
+
+
+
+    [PunRPC]
+    public void ChangeScore(int score, bool isLeft)
+    {
+        if (isLeft)
+        {
+            leftScoreValue = score;
+            leftScoreValueText.text = score.ToString();
+        }
+        else
+        {
+            rightScoreValue = score;
+            rightScoreValueText.text = score.ToString();
+        }
     }
 }

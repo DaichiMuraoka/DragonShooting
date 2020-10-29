@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private bool wait = true;       //待機フラグ
     private Slider hpSlider;        //HPスライダー（自キャラ用）
     private BattleManager battleManager = null;
+    private int score = 0;
+    private Text scoreValueText = null;
 
     //画面端の座標
     private Vector2 screenLeftBottom = new Vector2(0, 0);
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         //画面端座標取得
         screenLeftBottom = Camera.main.ScreenToWorldPoint(Vector2.zero);
         screenRightTop = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        //スコア初期化
+        AddScore(0);
     }
     void Update()
     {
@@ -240,14 +244,13 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private void Death()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);     //敗北エフェクト
-        BattleManager bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         if (photonView.IsMine)
         {
-            bm.GameOverProcess(false);
+            battleManager.GameOverProcess(false);
         }
         else
         {
-            bm.GameOverProcess(true);
+            battleManager.GameOverProcess(true);
         }
         Destroy(gameObject);   //キャラを削除
     }
@@ -355,5 +358,16 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     public void SetPlayerNameRPC(string name)
     {
         transform.Find("Icon").transform.Find("PlayerNameText").GetComponent<TextMesh>().text = name;
+    }
+
+    public void AddScore(int addScore)
+    {
+        score += addScore;
+        PhotonView p = battleManager.GetComponent<PhotonView>();
+        p.RPC(nameof(battleManager.ChangeScore), RpcTarget.All, score, PhotonNetwork.IsMasterClient);
+    }
+    public bool IsMine()
+    {
+        return photonView.IsMine;
     }
 }

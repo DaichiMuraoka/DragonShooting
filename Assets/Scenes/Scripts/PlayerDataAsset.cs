@@ -14,7 +14,7 @@ public class PlayerDataAsset : ScriptableObject
     [SerializeField]
     private float seVolume = 0.2f;
     [SerializeField]
-    private string characterData = "NomalDragon:FireBall:FlameThrower:EnagyBall/MegaDraco:FireBall:FlameThrower:EnagyBall";
+    private string characterData = "NomalDragon:FireBall:FlameThrower:EnagyBall/MegaDraco:FireBall:EnagyBall:FlameThrower";
     [SerializeField]
     private string battleCharacter = "NomalDragon";
     [SerializeField]
